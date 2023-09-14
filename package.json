@@ -17,8 +17,6 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"dev": "NODE_ENV=development node server.js",
-		"start": "NODE_ENV=production node server.js",
 		"server": "json-server --watch data/questions.json --port 8000"
 	},
 	"eslintConfig": {
