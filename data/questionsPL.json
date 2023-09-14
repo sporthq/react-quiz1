@@ -1,0 +1,129 @@
+{
+	"questions": [
+		{
+			"question": "Który framework JavaScript jest najpopularniejszy?",
+			"options": ["Angular", "React", "Svelte", "Vue"],
+			"correctOption": 1,
+			"points": 10
+		},
+		{
+			"question": "Która firma wynalazła React?",
+			"options": ["Google", "Apple", "Netflix", "Facebook"],
+			"correctOption": 3,
+			"points": 10
+		},
+		{
+			"question": "Jaki jest fundamentalny element budowy aplikacji w React?",
+			"options": ["Komponenty", "Bloki", "Elementy", "Efekty"],
+			"correctOption": 0,
+			"points": 10
+		},
+		{
+			"question": "Jak nazywa się składnia, którą używamy do opisywania interfejsu użytkownika w komponentach React?",
+			"options": ["FBJ", "Babel", "JSX", "ES2015"],
+			"correctOption": 2,
+			"points": 10
+		},
+		{
+			"question": "Jak naturalnie przepływa dane w aplikacjach React?",
+			"options": ["Od rodziców do dzieci", "Od dzieci do rodziców", "W obie strony", "Decyduje programista"],
+			"correctOption": 0,
+			"points": 10
+		},
+		{
+			"question": "Jak przekazać dane do komponentu potomnego?",
+			"options": ["Stan", "Propsy", "PropTypes", "Parametry"],
+			"correctOption": 1,
+			"points": 10
+		},
+		{
+			"question": "Kiedy używa się stanu pochodnego?",
+			"options": [
+				"Zawsze, gdy stan nie powinien wywoływać ponownego renderowania",
+				"Zawsze, gdy stan można zsynchronizować z efektem",
+				"Zawsze, gdy stan powinien być dostępny dla wszystkich komponentów",
+				"Zawsze, gdy stan można obliczyć na podstawie innej zmiennej stanu"
+			],
+			"correctOption": 3,
+			"points": 30
+		},
+		{
+			"question": "Co powoduje ponowne renderowanie interfejsu użytkownika w React?",
+			"options": [
+				"Wywołanie efektu",
+				"Przekazywanie propsów",
+				"Aktualizacja stanu",
+				"Dodawanie nasłuchiwaczy zdarzeń do elementów DOM"
+			],
+			"correctOption": 2,
+			"points": 20
+		},
+		{
+			"question": "Kiedy bezpośrednio 'dotykamy' DOM w React?",
+			"options": [
+				"Gdy potrzebujemy nasłuchiwać zdarzenia",
+				"Gdy potrzebujemy zmienić interfejs użytkownika",
+				"Gdy potrzebujemy dodać style",
+				"Prawie nigdy"
+			],
+			"correctOption": 3,
+			"points": 20
+		},
+		{
+			"question": "W jakiej sytuacji używamy wywołania zwrotnego (callback) do aktualizacji stanu?",
+			"options": [
+				"Gdy aktualizacja stanu będzie wolna",
+				"Gdy zaktualizowany stan zawiera dużo danych",
+				"Gdy aktualizacja stanu powinna być szybsza",
+				"Gdy nowy stan zależy od poprzedniego stanu"
+			],
+			"correctOption": 3,
+			"points": 30
+		},
+		{
+			"question": "Jeśli przekazujemy funkcję do useState, kiedy zostanie ona wywołana?",
+			"options": [
+				"Przy każdym ponownym renderowaniu",
+				"Za każdym razem, gdy aktualizujemy stan",
+				"Tylko podczas pierwszego renderowania",
+				"Pierwszy raz, gdy aktualizujemy stan"
+			],
+			"correctOption": 2,
+			"points": 30
+		},
+		{
+			"question": "Który hook używa się do wykonywania żądania API podczas początkowego renderowania komponentu?",
+			"options": ["useState", "useEffect", "useRef", "useReducer"],
+			"correctOption": 1,
+			"points": 10
+		},
+		{
+			"question": "Które zmienne powinny być umieszczone w tablicy zależności useEffect?",
+			"options": [
+				"Zazwyczaj żadne",
+				"Wszystkie nasze zmienne stanu",
+				"Wszystkie zmienne stanu i propsy używane w efekcie",
+				"Wszystkie zmienne potrzebne do czyszczenia"
+			],
+			"correctOption": 2,
+			"points": 30
+		},
+		{
+			"question": "Czy efekt zawsze zostanie uruchomiony przy początkowym renderowaniu?",
+			"options": ["Prawda", "To zależy od tablicy zależności", "Fałsz", "To zależy od kodu w efekcie"],
+			"correctOption": 0,
+			"points": 30
+		},
+		{
+			"question": "Kiedy efekt zostanie uruchomiony, jeśli nie ma tablicy zależności?",
+			"options": [
+				"Tylko w momencie montowania komponentu",
+				"Tylko w momencie demontażu komponentu",
+				"Pierwszy raz, gdy komponent zostaje ponownie przerysowany",
+				"Za każdym razem, gdy komponent jest ponownie przerysowywany"
+			],
+			"correctOption": 3,
+			"points": 20
+		}
+	]
+}

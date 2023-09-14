@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Options({ question, dispatch, answer }) {
-
+console.log(answer);
     const hasAnswered = answer !== null 
 	return (
 		<div className='options'>
