@@ -2,8 +2,8 @@
 
 # dependencies
 /node_modules
-/server.js
-/vercel.json
+server.js
+vercel.json
 
 /.pnp
 .pnp.js
