@@ -1,6 +1,7 @@
 {
 	"name": "do-kopiowania-czyty-projekt",
 	"version": "0.1.0",
+	"main": "server.js",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.17.0",
@@ -17,7 +18,9 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"server": "json-server --watch data/questions.json --port 8000"
+		"dev": "NODE_ENV=development node server.js",
+		"start": "NODE_ENV=production node server.js",
+		"watch": "json-server db.json --port=8000"
 	},
 	"eslintConfig": {
 		"extends": [
