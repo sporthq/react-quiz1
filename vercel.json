@@ -2,15 +2,15 @@
 	"version": 2,
 	"builds": [
 		{
+			"src": "build", // Katalog, w którym znajdują się pliki po kompilacji przez CRA
+			"use": "@vercel/static" // Używamy @vercel/static do obsługi plików statycznych
+		},
+		{
 			"src": "server.js",
 			"use": "@vercel/node",
 			"config": {
 				"includeFiles": ["db.json"]
 			}
-		},
-		{
-			"src": "public/**/*",
-			"use": "@vercel/static"
 		}
 	],
 	"routes": [
@@ -20,7 +20,7 @@
 		},
 		{
 			"src": "/(.*)",
-			"dest": "public/$1"
+			"dest": "/index.html" // Przekierowujemy wszystkie pozostałe żądania do index.html
 		}
 	]
 }
