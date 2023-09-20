@@ -1,5 +1,5 @@
 {
-	"questions": [
+	"questionsPL": [
 		{
 			"question": "Który framework JavaScript jest najpopularniejszy?",
 			"options": ["Angular", "React", "Svelte", "Vue"],
