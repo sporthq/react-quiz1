@@ -14,11 +14,10 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "NODE_ENV=production node server.js",
+		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"dev": "NODE_ENV=development node server.js",
 		"watch": "json-server db.json --port=8000"
 	},
 	"eslintConfig": {

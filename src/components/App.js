@@ -79,7 +79,7 @@ function App() {
 		function () {
 			async function getDate() {
 				try {
-					const res = await fetch(`http://localhost:8000/questions`);
+					const res = await fetch(`https://fake-server-api.vercel.app/questions`);
 					if (!res.ok) throw new Error('Something went wrong! Please try again');
 					const data = await res.json();
 					dispatch({ type: 'dataReceived', payload: data });
