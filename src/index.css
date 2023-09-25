@@ -228,10 +228,8 @@ progress {
 	width: 3.6rem;
 }
 .select-box {
-position: relative;
-width: 35%;
-
-
+	position: relative;
+	width: 35%;
 }
 select {
 	position: relative;
@@ -255,12 +253,81 @@ select {
 	border-style: solid;
 	border-color: transparent;
 	border-top-color: var(--color-medium);
+}
+@media only screen and (max-width: 576px) {
+	body {
+		padding: 2rem 0
+	}
+	.app-header {
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		
+	}
+
+	.app-header  img{
+		
+		margin-bottom: 2em;
+		width: 100%;
+		width: 10rem;
+	}
+
+	.btn {
 	
-	
-	
+	font-size: 1.6rem;
 
 }
+	h1 {
+		font-size: 4rem;
+		text-align: center;
+	}
+	 
+	.main {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+	.start {
+		display: flex;
+		
+	}
+	.start h2 {
+		font-size: 2.7rem;
+	}
+	.start h3 {
+		font-size: 2.2rem;
+	}
+	.start h4 {
+		font-size: 1.8rem;
+	}
+	.select-box {
+		margin-bottom: 1.8em;
+		width: 60%;
+	}
+	.select-box::after {
+		top: 50%;
+		right: 12%;
+		/* left: 30%; */
+	}
+	.game{ 
+		width: 80%;
+	}
+	.finishScreenGame {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 
+	.result {
+	
+	padding: 2rem 
+	
+}
+}
 /* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
 .loader {
 	width: 50px;

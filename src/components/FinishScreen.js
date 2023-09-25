@@ -12,7 +12,7 @@ export default function FinishScreen({ points, totalPoints, highscore, dispatch 
 	if (percentage === 0) emoji = '🤦‍♂️';
 
 	return (
-		<>
+		<div className='finishScreenGame'>
 			<p className='result'>
 				You scored{' '}
 				<strong>
@@ -26,6 +26,6 @@ export default function FinishScreen({ points, totalPoints, highscore, dispatch 
 			<button onClick={() => dispatch({ type: 'reset' })} className='btn btn-ui'>
 				Restart Quiz
 			</button>
-		</>
+		</div>
 	);
 }

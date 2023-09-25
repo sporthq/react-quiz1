@@ -36,7 +36,7 @@ function reducer(state, action) {
 		case 'dataReceived':
 			const allQuestion = action.payload;
 
-			return { ...state, questions: allQuestion, originalQuestions:allQuestion, status: 'ready' };
+			return { ...state, questions: allQuestion, originalQuestions: allQuestion, status: 'ready' };
 		case 'dataFailed':
 			return { ...state, status: 'error' };
 		case 'setDifficultyLevel': {
@@ -44,10 +44,11 @@ function reducer(state, action) {
 				return (
 					(action.payload === 'easy' && qst.difficulty === 'easy') ||
 					(action.payload === 'medium' && (qst.difficulty === 'medium' || qst.difficulty === 'easy')) ||
-					(action.payload === 'hard' && (qst.difficulty === 'hard' || qst.difficulty === 'medium' || qst.difficulty === 'easy' ))
+					(action.payload === 'hard' &&
+						(qst.difficulty === 'hard' || qst.difficulty === 'medium' || qst.difficulty === 'easy'))
 				);
 			});
-			
+
 			return { ...state, difficultyLevel: action.payload, questions: filteredQuestions };
 		}
 
@@ -79,7 +80,7 @@ function reducer(state, action) {
 				...initialState,
 				questions: state.questions,
 				status: 'chooseLanguage',
-				highscore: state.highscore
+				highscore: state.highscore,
 			};
 		}
 		case 'tick': {
@@ -97,7 +98,7 @@ function reducer(state, action) {
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	const { questions,  status, index, answer, points, highscore, secondRemaning, language } = state;
+	const { questions, status, index, answer, points, highscore, secondRemaning, language } = state;
 
 	const numOfQst = questions.length;
 	console.log(numOfQst);
@@ -145,20 +146,22 @@ function App() {
 					{status === 'ready' && language === 'Polish' && <StartScreenPL numOfQst={numOfQst} dispatch={dispatch} />}
 
 					{status === 'active' && (
-						<>
-							<Progress
-								index={index}
-								numOfQuestions={numOfQst}
-								points={points}
-								totalPoints={totalPoints}
-								answer={answer}
-							/>
-							<Question question={questions[index]} questions={questions} dispatch={dispatch} answer={answer} />
-							<Footer>
-								<Timer dispatch={dispatch} secondRemaning={secondRemaning} />
-								<NextButton dispatch={dispatch} answer={answer} index={index} numOfQst={numOfQst} />
-							</Footer>
-						</>
+					
+							<div className='game'>
+								<Progress
+									index={index}
+									numOfQuestions={numOfQst}
+									points={points}
+									totalPoints={totalPoints}
+									answer={answer}
+								/>
+								<Question question={questions[index]} questions={questions} dispatch={dispatch} answer={answer} />
+								<Footer>
+									<Timer dispatch={dispatch} secondRemaning={secondRemaning} />
+									<NextButton dispatch={dispatch} answer={answer} index={index} numOfQst={numOfQst} />
+								</Footer>
+							</div>
+						
 					)}
 				</>
 				{status === 'finished' && (
