@@ -11,23 +11,23 @@ export default function StartScreen({ numOfQst, dispatch }) {
 	}
 	return (
 		<div className='start'>
-			<h2>Welcome to The React Quiz!</h2>
-			<h3>Test your knowledge of React</h3>
-			<h4>Choose a difficulty level </h4>
-			{level !== 'none' && <h4>Number of questions: {numOfQst}</h4>}
+			<h2>Witamy w quizie o React!</h2>
+			<h3>Sprawdź swoją znajomość Reacta</h3>
+			<h4>Wybierz poziom trudności </h4>
+			{level !== 'none' && <h4>Liczba pytań: {numOfQst}</h4>}
 			<div className='select-box'>
 				<select value={level} name='level' id='level' onChange={handleLevel}>
 					<option value='none' disabled>
-						Select level
+						Wybierz poziom
 					</option>
-					<option value='easy'>Easy </option>
-					<option value='medium'>Medium </option>
-					<option value='hard'>Hard </option>
+					<option value='easy'>Łatwy </option>
+					<option value='medium'>Średni </option>
+					<option value='hard'>Trudny </option>
 				</select>
 			</div>
 
 			<button disabled={level === 'none'} className='btn btn-ui' onClick={() => dispatch({ type: 'start' })}>
-				Let's Start!
+				Zaczynajmy!
 			</button>
 		</div>
 	);

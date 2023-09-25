@@ -4,33 +4,60 @@ import Main from './Main';
 import Loader from './Loader';
 import Error from './Error';
 import StartScreen from './StartScreen';
+import StartScreenPL from './StartScreenPL';
 import Question from './Question';
 import NextButton from './NextButton';
 import Progress from './Progress';
 import FinishScreen from './FinishScreen';
 import Footer from './Footer';
 import Timer from './Timer';
+import ChooseLanguage from './ChooseLanguage';
 
 const SECS_PER_QUESTION = 30;
 const initialState = {
 	questions: [],
 	// 'loading', 'error', 'ready','active','finished'
-	status: 'loading',
+	originalQuestions: [],
+	status: 'chooseLanguage',
 	index: 0,
 	answer: null,
 	points: 0,
-	highscore: 0,
+	highscore: Number(localStorage.getItem('highscore')) || 0,
 	secondRemaning: null,
+	language: null,
+	difficultyLevel: 'easy',
 };
 
 function reducer(state, action) {
 	switch (action.type) {
+		case 'chooseLanguage': {
+			return { ...state, language: action.payload, status: 'ready' };
+		}
 		case 'dataReceived':
-			return { ...state, questions: action.payload, status: 'ready' };
+			const allQuestion = action.payload;
+
+			return { ...state, questions: allQuestion, originalQuestions:allQuestion, status: 'ready' };
 		case 'dataFailed':
 			return { ...state, status: 'error' };
+		case 'setDifficultyLevel': {
+			const filteredQuestions = state.originalQuestions.filter((qst) => {
+				return (
+					(action.payload === 'easy' && qst.difficulty === 'easy') ||
+					(action.payload === 'medium' && (qst.difficulty === 'medium' || qst.difficulty === 'easy')) ||
+					(action.payload === 'hard' && (qst.difficulty === 'hard' || qst.difficulty === 'medium' || qst.difficulty === 'easy' ))
+				);
+			});
+			
+			return { ...state, difficultyLevel: action.payload, questions: filteredQuestions };
+		}
+
 		case 'start':
-			return { ...state, status: 'active', secondRemaning: state.questions.length * SECS_PER_QUESTION };
+			return {
+				...state,
+				status: 'active',
+				questions: state.questions,
+				secondRemaning: state.questions.length * SECS_PER_QUESTION,
+			};
 		case 'newAnswer':
 			const question = state.questions.at(state.index);
 			return {
@@ -41,6 +68,7 @@ function reducer(state, action) {
 		case 'nextQuestion':
 			return { ...state, index: state.index + 1, answer: (state.answer = null) };
 		case 'finishGame':
+			localStorage.setItem('highscore', state.points > state.highscore ? state.points : state.highscore);
 			return {
 				...state,
 				status: 'finished',
@@ -50,7 +78,8 @@ function reducer(state, action) {
 			return {
 				...initialState,
 				questions: state.questions,
-				status: 'ready',
+				status: 'chooseLanguage',
+				highscore: state.highscore
 			};
 		}
 		case 'tick': {
@@ -68,19 +97,28 @@ function reducer(state, action) {
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	const { questions, status, index, answer, points, highscore, secondRemaning } = state;
+	const { questions,  status, index, answer, points, highscore, secondRemaning, language } = state;
 
 	const numOfQst = questions.length;
-	const totalPoints = questions.length >  0 ? questions.reduce((acc, currentItem) => {
-		return acc + currentItem.points;
-	}, 0) : 0
+	console.log(numOfQst);
+	const totalPoints =
+		questions.length > 0
+			? questions.reduce((acc, currentItem) => {
+					return acc + currentItem.points;
+			  }, 0)
+			: 0;
 
 	useEffect(
 		function () {
 			async function getDate() {
+				if (language === null) return;
 				try {
-					// const res = await fetch(`https://fake-server-api.vercel.app/questions`);
-					const res = await fetch(`https://fake-server-api.vercel.app/questionsPL`);
+					let res;
+					if (language === 'English') {
+						res = await fetch(`https://fake-server-api.vercel.app/questions`);
+					} else if (language === 'Polish') {
+						res = await fetch(`https://fake-server-api.vercel.app/questionsPL`);
+					}
 					if (!res.ok) throw new Error('Something went wrong! Please try again');
 					const data = await res.json();
 					dispatch({ type: 'dataReceived', payload: data });
@@ -89,26 +127,22 @@ function App() {
 				}
 			}
 
+			console.log('wykonuje sie ');
 			getDate();
 		},
-		[dispatch]
+		[dispatch, language]
 	);
-	// useEffect(() => {
-	// 	fetch(`/questionsPL.json`)
-	// 		.then((res) => res.json())
-	// 		.then((data) => dispatch({ type: 'dataReceived', payload: data.questions }))
-	// 		.catch((err) => dispatch({ type: 'dataFailed' }));
-	// }, []);
 
 	return (
 		<div className='app'>
 			<Header />
-
 			<Main>
 				<>
+					{status === 'chooseLanguage' && <ChooseLanguage dispatch={dispatch} />}
 					{status === 'loading' && <Loader />}
 					{status === 'error' && <Error />}
-					{status === 'ready' && <StartScreen numOfQst={numOfQst} dispatch={dispatch} />}
+					{status === 'ready' && language === 'English' && <StartScreen numOfQst={numOfQst} dispatch={dispatch} />}
+					{status === 'ready' && language === 'Polish' && <StartScreenPL numOfQst={numOfQst} dispatch={dispatch} />}
 
 					{status === 'active' && (
 						<>
