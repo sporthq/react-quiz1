@@ -229,6 +229,7 @@ progress {
 }
 .select-box {
 	position: relative;
+	margin-bottom: 1.8em;
 	width: 35%;
 }
 select {
