@@ -309,7 +309,7 @@ select {
 		width: 60%;
 	}
 	.select-box::after {
-		top: 50%;
+		top: 35%;
 		right: 12%;
 		/* left: 30%; */
 	}
